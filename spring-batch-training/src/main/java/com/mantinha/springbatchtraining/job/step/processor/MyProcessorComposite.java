@@ -4,6 +4,8 @@
 //import java.util.Set;
 //
 //import org.springframework.batch.item.ItemProcessor;
+//import org.springframework.batch.item.support.builder.CompositeItemProcessorBuilder;
+//import org.springframework.batch.item.validator.BeanValidatingItemProcessor;
 //import org.springframework.batch.item.validator.ValidatingItemProcessor;
 //import org.springframework.batch.item.validator.ValidationException;
 //import org.springframework.batch.item.validator.Validator;
@@ -19,15 +21,24 @@
 // *
 // */
 //@Configuration
-//public class MyProcessorValidating {
+//public class MyProcessorComposite {
 //	private Set<String> email = new HashSet<>();
 //
 //	@Bean
-//	public ItemProcessor<ClienteH, ClienteH> validating() {
-//		//Validação obrigatória pelo Beab
-////		BeanValidatingItemProcessor<ClienteH> processor = new BeanValidatingItemProcessor<>();
-////		processor.setFilter(true);
-//		//Validação customizada
+//	public ItemProcessor<ClienteH, ClienteH> validating() throws Exception {
+//		return new CompositeItemProcessorBuilder<ClienteH, ClienteH>()
+//				.delegates(beanValidator(), emailValidator())
+//				.build();
+//	} 
+//	
+//	private BeanValidatingItemProcessor<ClienteH> beanValidator() throws Exception {
+//		BeanValidatingItemProcessor<ClienteH> processor = new BeanValidatingItemProcessor<>();
+//		processor.setFilter(true);
+//		processor.afterPropertiesSet();
+//		return processor;
+//	}
+//	
+//	private ValidatingItemProcessor<ClienteH> emailValidator() {
 //		ValidatingItemProcessor<ClienteH> processor = new ValidatingItemProcessor<>();
 //		processor.setValidator(validator());
 //		processor.setFilter(true);

@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
-import com.mantinha.springbatchtraining.entity.ClienteH;
+import com.mantinha.springbatchtraining.entity.Cliente;
 
 /**
  * Leitor de arquivo com delimitadores para objeto especificado
+ * paramClientes=file:myInput/to-script/clientesToScript.txt
  * 
  * @author adriano
  *
@@ -21,14 +22,14 @@ public class MyReaderDelimiter {
 	
 	@StepScope
 	@Bean
-	public FlatFileItemReader<ClienteH> fileReader(@Value("#{jobParameters['paramClientes']}") Resource paramClientes) {
-		return new FlatFileItemReaderBuilder<ClienteH>()
+	public FlatFileItemReader<Cliente> fileReader(@Value("#{jobParameters['paramEntrada']}") Resource paramEntrada) {
+		return new FlatFileItemReaderBuilder<Cliente>()
 				.name("fileReader")
-				.resource(paramClientes)
+				.resource(paramEntrada)
 				.delimited()
-//				.names(new String[] {"nome", "sobrenome", "idade", "email"})
-				.names(new String[] {"nome", "idade", "email"})
-				.targetType(ClienteH.class)
+				.names(new String[] {"nome", "sobrenome", "idade", "email"})
+//				.names(new String[] {"nome", "idade", "email"})
+				.targetType(Cliente.class)
 				.build();
 	}
 

@@ -3,6 +3,8 @@
 //import org.springframework.batch.item.ItemWriter;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
+//
+//import com.mantinha.springbatchtraining.entity.Cliente;
 ///**
 // * Escritor de arquivo a partir de multi formatos
 // * 
@@ -11,10 +13,9 @@
 // */
 //@Configuration
 //public class MyWriterWithFlatMultiFormat {
-//
-//	@SuppressWarnings({ "rawtypes", "unchecked" })
+//	
 //	@Bean
-//	public ItemWriter fileWriter() {
+//	public ItemWriter<Cliente> consoleWriter() {
 //		return items -> items.forEach(System.out::println);	
 //	}
 //}
