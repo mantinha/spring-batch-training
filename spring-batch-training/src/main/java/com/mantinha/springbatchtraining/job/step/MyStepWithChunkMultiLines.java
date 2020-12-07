@@ -1,5 +1,4 @@
-package com.mantinha.springbatchtraining.job.step;
-//package com.mantinha.springbatchtraining.step;
+//package com.mantinha.springbatchtraining.job.step;
 //
 //import org.springframework.batch.core.Step;
 //import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -9,7 +8,7 @@ package com.mantinha.springbatchtraining.job.step;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //
-//import com.adriano.WorkWithJobsAndSteps.Reader.MyReaderWithFlatMultiLinesImpl;
+//import com.mantinha.springbatchtraining.job.step.reader.flat.MyReaderWithFlatMultiLinesImpl;
 //
 ///**
 // * Classe modelo de um Step do tipo Chunk

@@ -1,11 +1,11 @@
-package com.mantinha.springbatchtraining.job.step.reader.flat;
-
+//package com.mantinha.springbatchtraining.job.step.reader.flat;
+//
 //import org.springframework.batch.item.ExecutionContext;
 //import org.springframework.batch.item.ItemStreamException;
 //import org.springframework.batch.item.ItemStreamReader;
 //
-//import com.adriano.WorkWithJobsAndSteps.Model.ClienteWithTransacao;
-//import com.adriano.WorkWithJobsAndSteps.Model.Transacao;
+//import com.mantinha.springbatchtraining.entity.ClienteWithTransacao;
+//import com.mantinha.springbatchtraining.entity.Transacao;
 //
 //public class MyReaderWithFlatMultiLinesImpl implements ItemStreamReader<ClienteWithTransacao> {
 //

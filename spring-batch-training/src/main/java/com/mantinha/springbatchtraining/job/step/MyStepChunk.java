@@ -2,13 +2,13 @@ package com.mantinha.springbatchtraining.job.step;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.mantinha.springbatchtraining.entity.Cliente;
+import com.mantinha.springbatchtraining.entity.GrupoLancamento;
 
 /**
  * Classe modelo de um Step do tipo Chunk
@@ -26,15 +26,28 @@ public class MyStepChunk {
 	@Autowired
 	private StepBuilderFactory sbf;
 	
-	@Bean
-	public Step runStep(FlatFileItemReader<Cliente> reader, FlatFileItemWriter<Cliente> writer) {
-		return sbf.get("runStep")
-				.<Cliente, Cliente>chunk(1)
-				.reader(reader)
-				.writer(writer)
-				.build();
-	}
-	
+//	/**
+//	 * 
+//	 * @param reader PADRAO - LEITURA DE ARQUIVO
+//	 * @param writer PADRAO - ESCRITA DE ARQUIVO
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(FlatFileItemReader<Cliente> reader, FlatFileItemWriter<Cliente> writer) {
+//		return sbf.get("runStep")
+//				.<Cliente, Cliente>chunk(1)
+//				.reader(reader)
+//				.writer(writer)
+//				.build();
+//	}
+			
+//	/**
+//	 * 
+//	 * @param reader 	PADRAO - LEITURA
+//	 * @param processor	PADRAO - PROCESSAMENTO
+//	 * @param writer	PADRAO - ESCRITA
+//	 * @return
+//	 */
 //	@Bean
 //	public Step runStep(ItemReader<Cliente> reader, ItemProcessor<Cliente, Cliente> processor, ItemWriter<Cliente> writer) {
 //		return sbf.get("runStep")
@@ -44,5 +57,50 @@ public class MyStepChunk {
 //				.writer(writer)
 //				.build();
 //	}
+	
+//	/**
+//	 * 
+//	 * @param reader PADRAO - LEITURA DE VÁRIOS ARQUIVOS
+//	 * @param writer PADRAO - ESCRITA EM CONSOLE
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(MultiResourceItemReader<GrupoLancamento> reader, ItemWriter<GrupoLancamento> writer) {
+//		return sbf.get("runStep")
+//				.<GrupoLancamento, GrupoLancamento>chunk(1)
+//				.reader(reader)
+//				.writer(writer)
+//				.build();
+//	}
+	
+//	/**
+//	 * 
+//	 * @param reader PADRAO - LEITURA DO BANCO
+//	 * @param writer PADRAO - ESCRITA EM CONSOLE
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(MyJdbcItemReader reader, ItemWriter<GrupoLancamento> writer) {
+//		return sbf.get("runStep")
+//				.<GrupoLancamento, GrupoLancamento>chunk(1)
+//				.reader(reader)
+//				.writer(writer)
+//				.build();
+//	}
+	
+	/**
+	 * 
+	 * @param reader PADRAO - LEITURA DE VÁRIOS ARQUIVOS
+	 * @param writer PADRAO - ESCRITA EM ARQUIVO
+	 * @return
+	 */
+	@Bean
+	public Step runStep(MultiResourceItemReader<GrupoLancamento> reader, FlatFileItemWriter<GrupoLancamento> writer) {
+		return sbf.get("runStep")
+				.<GrupoLancamento, GrupoLancamento>chunk(1)
+				.reader(reader)
+				.writer(writer)
+				.build();
+	}
 
 }

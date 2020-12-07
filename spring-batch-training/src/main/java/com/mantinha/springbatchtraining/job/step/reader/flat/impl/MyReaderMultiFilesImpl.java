@@ -1,4 +1,5 @@
-//package com.adriano.WorkWithJobsAndSteps.FlatReader;
+package com.mantinha.springbatchtraining.job.step.reader.flat.impl;
+//package com.mantinha.springbatchtraining.job.step.reader.flat;
 //
 //import org.springframework.batch.item.ExecutionContext;
 //import org.springframework.batch.item.ItemStreamException;
@@ -7,8 +8,9 @@
 //import org.springframework.batch.item.file.ResourceAwareItemReaderItemStream;
 //import org.springframework.core.io.Resource;
 //
-//import com.adriano.WorkWithJobsAndSteps.Model.ClienteWithTransacao;
-//import com.adriano.WorkWithJobsAndSteps.Model.Transacao;
+//import com.mantinha.springbatchtraining.entity.ClienteWithTransacao;
+//import com.mantinha.springbatchtraining.entity.Transacao;
+//
 ///**
 // * Usado Padrão Delegate
 // * Faz o cache do Objeto lido e alimenta atributo especificado com Objeto especificado
