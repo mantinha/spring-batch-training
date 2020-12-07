@@ -2,13 +2,15 @@ package com.mantinha.springbatchtraining.job.step;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.file.FlatFileItemWriter;
-import org.springframework.batch.item.file.MultiResourceItemReader;
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.mantinha.springbatchtraining.entity.GrupoLancamento;
+import com.mantinha.springbatchtraining.entity.ClienteB;
+import com.mantinha.springbatchtraining.entity.Conta;
 
 /**
  * Classe modelo de um Step do tipo Chunk
@@ -88,17 +90,53 @@ public class MyStepChunk {
 //				.build();
 //	}
 	
+//	/**
+//	 * 
+//	 * @param reader PADRAO - LEITURA DE VÁRIOS ARQUIVOS
+//	 * @param writer PADRAO - ESCRITA EM ARQUIVO
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(MultiResourceItemReader<GrupoLancamento> reader, FlatFileItemWriter<GrupoLancamento> writer, RodapeCallback listener) {
+//		return sbf.get("runStep")
+//				.<GrupoLancamento, GrupoLancamento>chunk(1)
+//				.reader(reader)
+//				.writer(writer)
+//				.listener(listener)
+//				.build();
+//	}
+	
+//	/**
+//	 * 
+//	 * @param reader PADRAO - LEITURA DE VARIOS ARQUIVOS
+//	 * @param writer PADRAO - ESCRITA EM VARIOS ARQUIVOS
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(MultiResourceItemReader<GrupoLancamento> reader, MultiResourceItemWriter<GrupoLancamento> writer, RodapeCallback listener) {
+//		return sbf.get("runStep")
+//				.<GrupoLancamento, GrupoLancamento>chunk(1)
+//				.reader(reader)
+//				.writer(writer)
+//				.listener(listener)
+//				.build();
+//	}
+	
 	/**
 	 * 
-	 * @param reader PADRAO - LEITURA DE VÁRIOS ARQUIVOS
-	 * @param writer PADRAO - ESCRITA EM ARQUIVO
+	 * @param reader 	PADRAO - LEITURA EM BANCO
+	 * @param processor	PADRAO - PROCESSAMENTO
+	 * @param writer	PADRAO - ESCRITA EM BANCO
 	 * @return
 	 */
 	@Bean
-	public Step runStep(MultiResourceItemReader<GrupoLancamento> reader, FlatFileItemWriter<GrupoLancamento> writer) {
+	public Step runStep(ItemReader<ClienteB> reader, 
+			ItemProcessor<ClienteB, Conta> processor, 
+			ItemWriter<Conta> writer) {
 		return sbf.get("runStep")
-				.<GrupoLancamento, GrupoLancamento>chunk(1)
+				.<ClienteB, Conta>chunk(1)
 				.reader(reader)
+				.processor(processor)
 				.writer(writer)
 				.build();
 	}

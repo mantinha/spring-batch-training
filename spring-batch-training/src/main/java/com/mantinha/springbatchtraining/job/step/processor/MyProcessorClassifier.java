@@ -16,6 +16,10 @@
 //@Configuration
 //public class MyProcessorClassifier {
 //
+//	/**
+//	 * Cenario em que o Objeto nao e especificado
+//	 * @return
+//	 */
 //	@SuppressWarnings({ "rawtypes", "unchecked" })
 //	@Bean
 //	public ItemProcessor classifierProcessor() {
@@ -37,5 +41,6 @@
 //			}
 //			
 //		};
-//	}
+//	}	
+//	
 //}
