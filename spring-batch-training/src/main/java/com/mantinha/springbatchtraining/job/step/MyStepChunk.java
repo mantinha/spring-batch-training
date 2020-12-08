@@ -4,8 +4,10 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.support.CompositeItemWriter;
+import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -122,20 +124,41 @@ public class MyStepChunk {
 //				.build();
 //	}
 	
+//	/**
+//	 * 
+//	 * @param reader 	PADRAO - LEITURA EM BANCO
+//	 * @param processor	PADRAO - PROCESSAMENTO
+//	 * @param writer	PADRAO - ESCRITA EM BANCO
+//	 * @return
+//	 */
+//	@Bean
+//	public Step runStep(ItemReader<ClienteB> reader, ItemProcessor<ClienteB, Conta> processor, CompositeItemWriter<Conta> writer) {
+//		return sbf.get("runStep")
+//				.<ClienteB, Conta>chunk(100)
+//				.reader(reader)
+//				.processor(processor)
+//				.writer(writer)
+//				.build();
+//	}
+	
 	/**
 	 * 
 	 * @param reader 	PADRAO - LEITURA EM BANCO
 	 * @param processor	PADRAO - PROCESSAMENTO
-	 * @param writer	PADRAO - ESCRITA EM BANCO
+	 * @param writer	PADRAO - ESCRITA EM BANCO/2 ARQUIVOS/CONSOLE
 	 * @return
 	 */
 	@Bean
-	public Step runStep(ItemReader<ClienteB> reader, ItemProcessor<ClienteB, Conta> processor, CompositeItemWriter<Conta> writer) {
+	public Step runStep( ItemReader<ClienteB> reader, ItemProcessor<ClienteB, Conta> processor, ClassifierCompositeItemWriter<Conta> writer, 
+			@Qualifier("fileWriter") FlatFileItemWriter<Conta> valid, 
+			@Qualifier("invalidFileWriter") FlatFileItemWriter<Conta> invalid ) {
 		return sbf.get("runStep")
 				.<ClienteB, Conta>chunk(100)
 				.reader(reader)
 				.processor(processor)
 				.writer(writer)
+				.stream(valid)
+				.stream(invalid)
 				.build();
 	}
 

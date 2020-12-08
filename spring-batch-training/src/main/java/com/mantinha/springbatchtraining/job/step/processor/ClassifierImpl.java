@@ -18,6 +18,7 @@ public class ClassifierImpl implements Classifier<ClienteB, ItemProcessor<?, ? e
 		put(TipoConta.OURO, new OuroProcessor());
 		put(TipoConta.PLATINA, new PlatinaProcessor());
 		put(TipoConta.DIAMANTE, new DiamanteProcessor());
+		put(TipoConta.INVALIDA, new InvalidaProcessor());
 	}};
 
 	@Override

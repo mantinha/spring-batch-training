@@ -56,6 +56,20 @@ public class FlatFileItemWriterConfig {
 	}
 	
 	/**
+	 * Escreve arquivo com dados invalidos
+	 * @return
+	 */
+	@Bean
+	public FlatFileItemWriter<Conta> invalidFileWriter() {
+		return new FlatFileItemWriterBuilder<Conta>()
+				.name("invalidFileWriter")
+				.resource(new FileSystemResource("./myOutput/contasInvalidas.txt"))
+				.delimited()
+				.names("clienteId")
+				.build();
+	}
+	
+	/**
 	 * Saida de varios arquivos referenciando uma saida pronta
 	 * @param resource
 	 * @param rodapeCallback

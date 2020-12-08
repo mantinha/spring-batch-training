@@ -36,6 +36,8 @@ INSERT INTO cliente VALUES ("Zeca 9", "Silva", "30", "zeca9@test.com");
 
 select * from cliente;
 
+UPDATE cliente SET faixa_salarial = NULL WHERE faixa_salarial > 100000;
+
 CREATE TABLE lancamento (
 	codigoNaturezaDespesa INT,
 	descricaoNaturezaDespesa TEXT,
@@ -77,6 +79,7 @@ CREATE table conta (
 	primary key(id)
 );
 
+select * from conta;
 
 INSERT INTO `cliente` (`nome`, `idade`, `email`, `faixa_salarial`) VALUES ('Mariam Reichert PhD', 56, 'abernier@example.com', '889.2');
 INSERT INTO `cliente` (`nome`, `idade`, `email`, `faixa_salarial`) VALUES ('Kyra Gutmann', 58, 'alexandria.gutmann@example.org', '2084.11');
