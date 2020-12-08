@@ -9,12 +9,12 @@ import com.mantinha.springbatchtraining.entity.ClienteB;
 import com.mantinha.springbatchtraining.entity.Conta;
 
 @Configuration
-public class ClassifierItemProcessor {
+public class ClassifierConfig {
 	
 	@Bean
 	public ItemProcessor<ClienteB, Conta> processor() {
 		return new ClassifierCompositeItemProcessorBuilder<ClienteB, Conta>()
-				.classifier(new ClassifierItemProcessorImpl())
+				.classifier(new ClassifierImpl())
 				.build();
 	}
 

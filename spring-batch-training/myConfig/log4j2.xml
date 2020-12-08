@@ -11,11 +11,11 @@
         </File>
     </Appenders>
     <Loggers>        
-        <Logger name="com.adriano.WorkWithJobsAndSteps" level="info" additivity="false">
+        <Logger name="com.mantinha.springbatchtraining" level="info" additivity="false">
 			<AppenderRef ref="LogToFile"/>
 			<AppenderRef ref="LogToConsole"/>            
         </Logger>
-		<Logger name="com.adriano.WorkWithJobsAndSteps" level="info" additivity="false">
+		<Logger name="com.mantinha.springbatchtraining" level="info" additivity="false">
 			<AppenderRef ref="LogToConsole"/>            
         </Logger>
 		<Root level="info">

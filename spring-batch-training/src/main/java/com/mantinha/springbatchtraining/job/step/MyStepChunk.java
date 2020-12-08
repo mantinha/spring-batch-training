@@ -4,7 +4,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.support.CompositeItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -130,11 +130,9 @@ public class MyStepChunk {
 	 * @return
 	 */
 	@Bean
-	public Step runStep(ItemReader<ClienteB> reader, 
-			ItemProcessor<ClienteB, Conta> processor, 
-			ItemWriter<Conta> writer) {
+	public Step runStep(ItemReader<ClienteB> reader, ItemProcessor<ClienteB, Conta> processor, CompositeItemWriter<Conta> writer) {
 		return sbf.get("runStep")
-				.<ClienteB, Conta>chunk(1)
+				.<ClienteB, Conta>chunk(100)
 				.reader(reader)
 				.processor(processor)
 				.writer(writer)

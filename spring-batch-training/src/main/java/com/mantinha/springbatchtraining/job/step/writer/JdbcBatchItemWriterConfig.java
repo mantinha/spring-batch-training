@@ -14,8 +14,15 @@ import org.springframework.context.annotation.Configuration;
 
 import com.mantinha.springbatchtraining.entity.Conta;
 
+/**
+ * Configura a saide de dados para o banco de dados especificado
+ * banco setado no metodo secondDataSource (VER MyDataSource)
+ * 
+ * @author adriano
+ *
+ */
 @Configuration
-public class MyJdbcItemWriter {
+public class JdbcBatchItemWriterConfig {
 	
 	@Bean
 	public JdbcBatchItemWriter<Conta> jdbcWriter(
